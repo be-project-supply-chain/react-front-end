@@ -5,26 +5,26 @@ class Hereditary extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state={
-          hinfo: new Array(20).fill(0)
-        }
-        
+        this.hinfo= new Array(20).fill(0)
+                
         this.hereditary = [
             'Mental illness','Back Pain', 'Stroke', 'Atherosclerosis','Obesity','Cirrhosis','Cancer', 
             'Heart Disease','High Blood Pressure','Type-II Diabetes',"Alzheimer's disease","Arthritis",
             "Asthma","Chronic obstructive pulmonary disease","Metabolic syndrome","Chronic renal failure",
             "Osteoporosis","Swimmer’s ear","Nephritis","Eye Pain"
         ]
-        console.log(this.state.hinfo)
+        // console.log(this.hinfo)
       }
 
      handleClick(i) {
         i=Number(i)
-        this.state.hinfo[i] = this.state.hinfo[i]==0?1:0
-        this.forceUpdate()
-        // console.log(this.state.hinfo)
+        this.hinfo[i] = this.hinfo[i]==0?1:0
+        this.sendData()
       }
+    sendData =()=>{
+      this.props.parentCallback(this.hinfo)
+      console.log("sendData")
+    }
       
       
     render() {
@@ -40,7 +40,7 @@ class Hereditary extends React.Component {
             {
                 this.hereditary.map((symptom,index )=> (
                     <Button className="btn-1 ml-1"
-                        color={`${this.state.hinfo[index]==0?"success":"danger"}`}
+                        color={`${this.hinfo[index]==0?"success":"danger"}`}
                         outline
                         type="button"
                         size="sm"

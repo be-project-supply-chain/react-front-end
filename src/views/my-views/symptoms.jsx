@@ -57,11 +57,14 @@ class Symptoms extends React.Component {
           this.state.sinfo.push(symptom)
           this.forceUpdate()
           console.log(this.state.sinfo)
-
         }
-
+        this.sendData()
       }
       
+      sendData =()=>{
+        this.props.parentCallback(this.state.sinfo)
+        console.log("sendData")
+      }
       
       
     render() {
