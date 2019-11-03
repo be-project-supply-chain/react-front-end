@@ -15,7 +15,7 @@ class FormHealth extends React.Component {
           h:new Array(20).fill(0),
           s: [],
           l: new Array(20).fill(-1),
-          message:""
+          tip:0
         }
       // console.log(this.state.h)
     }
@@ -48,7 +48,15 @@ class FormHealth extends React.Component {
 
     callApi(){
       fetch('http://localhost:5000/', {
-          method: 'GET',
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            quality: 6.5,
+            service: 9.8,
+          })
       }).then(res=>{
         console.log(res)
         res=res.json()
@@ -56,7 +64,7 @@ class FormHealth extends React.Component {
         return res
       }).then(data=>{
         console.log(data)
-        this.setState({message:data.message})
+        this.setState({tip:data.tip})
       })
       .catch(e=>{
         console.log(e)
@@ -90,7 +98,7 @@ class FormHealth extends React.Component {
                 </Button>
               </Row>
               <Row className="justify-content-center">
-                  <Output m={this.state.message}/>
+                  <Output m={this.state.tip}/>
               </Row>
             </Container>  
           </section>

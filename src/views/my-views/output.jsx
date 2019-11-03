@@ -14,7 +14,7 @@ const Output = ({m})=>{
             <>
             <Col xs="12" style={{backgroundColor: '#f1f1f1'}}>
                 <h1>Output</h1> 
-                <h2>{m}</h2>
+                <h2>Tip : {m}</h2>
             </Col>
     
             </>
