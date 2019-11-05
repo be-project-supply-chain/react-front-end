@@ -15,7 +15,8 @@ class FormHealth extends React.Component {
           h:new Array(20).fill(0),
           s: [],
           l: new Array(20).fill(-1),
-          tip:0
+          // tip:0
+          results:""
         }
       // console.log(this.state.h)
     }
@@ -37,7 +38,6 @@ class FormHealth extends React.Component {
       console.log(this.state)
       if(this.state.l.includes(-1)){
         alert("you have not filled the lifestyle form")
-        this.callApi()
         return
       }
       else{
@@ -47,24 +47,31 @@ class FormHealth extends React.Component {
     }
 
     callApi(){
-      fetch('http://localhost:5000/', {
+      fetch('http://localhost:5000/disease', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            quality: 6.5,
-            service: 9.8,
+            symptoms: this.state.s ,
+            lifestyle: this.state.l,
           })
       }).then(res=>{
-        console.log(res)
         res=res.json()
-        console.log(res)
         return res
       }).then(data=>{
         console.log(data)
-        this.setState({tip:data.tip})
+        this.setState({ results:data})
+        console.log(this.state.s)
+        if(this.state.s==0){
+          this.setState(prevState => {
+            let results = Object.assign({}, prevState.results);  
+            results.symptom_disease = 'You are currently not facing any disease ';                                      
+            return { results };                                 
+          })
+        }
+        console.log(this.state.results)
       })
       .catch(e=>{
         console.log(e)
@@ -97,9 +104,7 @@ class FormHealth extends React.Component {
                       Submit
                 </Button>
               </Row>
-              <Row className="justify-content-center">
-                  <Output m={this.state.tip}/>
-              </Row>
+              <Output m={this.state.results}/>
             </Container>  
           </section>
         </>

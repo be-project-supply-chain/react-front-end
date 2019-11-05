@@ -33,8 +33,8 @@ import MyApp from "views/my-app.jsx"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/my-app" exact render={props => <MyApp {...props} />} />
-      <Route path="/" exact render={props => <Index {...props} />} />
+      <Route path="/" exact render={props => <MyApp {...props} />} />
+      <Route path="/system-app" exact render={props => <Index {...props} />} />
       
       <Route path="/login-page" exact render={props => <Login {...props} />} />
       <Route

@@ -54,7 +54,7 @@ class Lifestyle extends React.Component {
               title : "Do you sit straight?",
               options : [{name:"yes",value:1},{name:"no",value:2}]
           },{
-              title : "Do you walk to the workplace?",
+              title : "Do you sit on cushioned chair? ",
               options : [{name:"yes",value:1},{name:"no",value:2}]
           },{
               title : " How many hours in a day do you sit in front of computer?",
@@ -175,6 +175,8 @@ class Lifestyle extends React.Component {
               options : [{name:"yes",value:1},{name:"no",value:2}]
           }
       ]
+
+      console.log(this.lifestyle.length)
         this.state={
           linfo: new Array(this.lifestyle.length).fill(-1)
         }
@@ -211,7 +213,9 @@ class Lifestyle extends React.Component {
                 {
                   this.lifestyle.map((life,index) => (                      
                       <Row>
+                        
                         <Col xs="4" >
+                        {index} )
                           <small className="text-uppercase font-weight-bold">{life.title}</small>
                         </Col>
                         <Col xs="8">
